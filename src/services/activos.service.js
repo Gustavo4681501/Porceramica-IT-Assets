@@ -43,5 +43,13 @@ export const agregarPropietario = async (activoId, propietarioData) => {
   })
 }
 
+export const actualizarActivo = async (activoId, datosActualizados) => {
+  const ref = doc(db, "activos", activoId)
+  await updateDoc(ref, {
+    ...datosActualizados,
+    ultimaActualizacion: Timestamp.now(),
+  })
+}
+
 export const eliminarActivo = async id =>
   deleteDoc(doc(db, "activos", id))
